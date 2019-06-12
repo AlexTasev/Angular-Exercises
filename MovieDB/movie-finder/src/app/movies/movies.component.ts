@@ -12,14 +12,22 @@ export class MoviesComponent implements OnInit {
 
   popularMovies: Array<Movie>;
   inTheaterMovies: Array<Movie>;
+  popularKidsMovies: Movie[];
+  bestDramaMovies: Movie[];
   singleMovie: Movie;
 
   ngOnInit() {
     this.movieService.getPopularMovies().subscribe(data => {
-      this.popularMovies = data['results'].slice(0, 6);
+      this.popularMovies = data;
     });
     this.movieService.getInTheaterMovies().subscribe(data => {
-      this.inTheaterMovies = data['results'].slice(6, 12);
-    })
+      this.inTheaterMovies = data;
+    });
+    this.movieService.getPopularKidsMovies().subscribe(data => {
+      this.popularKidsMovies = data;
+    });
+    this.movieService.getBestDramaMovies().subscribe(data => {
+      this.bestDramaMovies =data;
+    });
   }
 }
