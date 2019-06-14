@@ -51,7 +51,13 @@ export class MovieService {
       )
   }
 
-  getMovieById(id:string) {
+  getMovieById(id: string) {
     return this.http.get<MovieDetails>(baseUrl + `movie/${id}` + apiKeyAlt)
+  }
+
+  searchMovie(query: string) {
+    return this.http.get<Movie[]>(
+      baseUrl + 'search/movie' + apiKeyAlt + `&query=${query}`
+    )
   }
 }
