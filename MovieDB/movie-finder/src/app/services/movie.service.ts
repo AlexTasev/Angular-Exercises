@@ -4,8 +4,10 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import Movie from '../models/Movie';
+import MovieDetails from '../models/Movie-Details';
 
 const apiKey = '&api_key=d0f74e40968b0bd8263ddbdb035456ec';
+const apiKeyAlt = '?api_key=d0f74e40968b0bd8263ddbdb035456ec';
 
 const baseUrl = 'https://api.themoviedb.org/3/';
 const popularUrl = 'discover/movie?sort_by=popularity.desc';
@@ -47,5 +49,9 @@ export class MovieService {
       .pipe(
         map((data) => data['results'].slice(0, 6))
       )
+  }
+
+  getMovieById(id:string) {
+    return this.http.get<MovieDetails>(baseUrl + `movie/${id}` + apiKeyAlt)
   }
 }
